@@ -57,7 +57,7 @@ public class Application {
 				try {
 					rechercheVille.traiter(recensement, scanner);
 				} catch (VilleInconnueException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 				}
 				break;
 			case 2:
@@ -65,7 +65,7 @@ public class Application {
 				try {
 					rechercheDept.traiter(recensement, scanner);
 				} catch (DptInconnuException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 				}
 				break;
 			case 3:
@@ -73,7 +73,7 @@ public class Application {
 				try {
 					rechercheRegion.traiter(recensement, scanner);
 				} catch (RegionInconnueException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 				}
 				break;
 			case 4:
@@ -81,7 +81,7 @@ public class Application {
 				try {
 					recherchePopBorne.traiter(recensement, scanner);
 				} catch (NumberFormatException | DptInconnuException | NombreNegatifException | MinSupMaxException e) {
-					System.out.println(e.getMessage());
+					System.err.println(e.getMessage());
 				}
 				break;
 			}
