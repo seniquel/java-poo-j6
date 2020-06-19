@@ -2,6 +2,11 @@ package fr.diginamic.recensement;
 
 import java.util.Scanner;
 
+import fr.diginamic.exemple.exceptions.DptInconnuException;
+import fr.diginamic.exemple.exceptions.MinSupMaxException;
+import fr.diginamic.exemple.exceptions.NombreNegatifException;
+import fr.diginamic.exemple.exceptions.RegionInconnueException;
+import fr.diginamic.exemple.exceptions.VilleInconnueException;
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.services.RecherchePopulationBorneService;
 import fr.diginamic.recensement.services.RecherchePopulationDepartementService;
@@ -24,8 +29,8 @@ public class Application {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		String filePath = ClassLoader.getSystemClassLoader().getResource("recensement.csv").getFile();
-		Recensement recensement = RecensementUtils.lire(filePath);
+		//String filePath = ClassLoader.getSystemClassLoader().getResource("D:\\Formation 2020\\Java\\java-poo-j6\\src\\main\\resources\\recensement.csv").getFile();
+		Recensement recensement = RecensementUtils.lire("D:\\Formation 2020\\Java\\java-poo-j6\\src\\main\\resources\\recensement.csv");
 
 		if (recensement == null) {
 			System.out.println("L'application doit s'arrétée en raison d'une erreur d'exécution.");
@@ -49,19 +54,41 @@ public class Application {
 			switch (choix) {
 			case 1:
 				RecherchePopulationVilleService rechercheVille = new RecherchePopulationVilleService();
-				rechercheVille.traiter(recensement, scanner);
+				try {
+					rechercheVille.traiter(recensement, scanner);
+				} catch (VilleInconnueException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 2:
 				RecherchePopulationDepartementService rechercheDept = new RecherchePopulationDepartementService();
-				rechercheDept.traiter(recensement, scanner);
+				try {
+					rechercheDept.traiter(recensement, scanner);
+				} catch (DptInconnuException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 3:
 				RecherchePopulationRegionService rechercheRegion = new RecherchePopulationRegionService();
-				rechercheRegion.traiter(recensement, scanner);
+				try {
+					rechercheRegion.traiter(recensement, scanner);
+				} catch (RegionInconnueException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 4:
 				RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
-				recherchePopBorne.traiter(recensement, scanner);
+				try {
+					recherchePopBorne.traiter(recensement, scanner);
+				} catch (NumberFormatException e) {
+					System.out.println(e.getMessage());
+				} catch (DptInconnuException e) {
+					System.out.println(e.getMessage());
+				} catch (NombreNegatifException e) {
+					System.out.println(e.getMessage());
+				} catch (MinSupMaxException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			}
 		} while (choix != 99);

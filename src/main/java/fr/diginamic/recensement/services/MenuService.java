@@ -2,6 +2,11 @@ package fr.diginamic.recensement.services;
 
 import java.util.Scanner;
 
+import fr.diginamic.exemple.exceptions.DptInconnuException;
+import fr.diginamic.exemple.exceptions.MinSupMaxException;
+import fr.diginamic.exemple.exceptions.NombreNegatifException;
+import fr.diginamic.exemple.exceptions.RegionInconnueException;
+import fr.diginamic.exemple.exceptions.VilleInconnueException;
 import fr.diginamic.recensement.entites.Recensement;
 
 /**
@@ -17,6 +22,14 @@ public abstract class MenuService {
 	 * 
 	 * @param lignes lignes du fichier
 	 * @param scanner scanner
+	 * @throws NombreOutOfBoundsException 
+	 * @throws LettrePlutotQueNombreException 
+	 * @throws DptInconnuException 
+	 * @throws NumberFormatException 
+	 * @throws MinSupMaxException 
+	 * @throws NombreNegatifException 
+	 * @throws RegionInconnueException 
+	 * @throws VilleInconnueException 
 	 */
-	public abstract void traiter(Recensement recensement, Scanner scanner);
+	public abstract void traiter(Recensement recensement, Scanner scanner) throws DptInconnuException, MinSupMaxException, NumberFormatException, NombreNegatifException, RegionInconnueException, VilleInconnueException;
 }
