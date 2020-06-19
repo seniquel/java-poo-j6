@@ -80,13 +80,7 @@ public class Application {
 				RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
 				try {
 					recherchePopBorne.traiter(recensement, scanner);
-				} catch (NumberFormatException e) {
-					System.out.println(e.getMessage());
-				} catch (DptInconnuException e) {
-					System.out.println(e.getMessage());
-				} catch (NombreNegatifException e) {
-					System.out.println(e.getMessage());
-				} catch (MinSupMaxException e) {
+				} catch (NumberFormatException | DptInconnuException | NombreNegatifException | MinSupMaxException e) {
 					System.out.println(e.getMessage());
 				}
 				break;
